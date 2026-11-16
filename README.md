@@ -51,18 +51,29 @@ design-system/adopit/    the design rules the styles follow
 
 Every query uses prepared statements, all output is HTML-escaped, and every form that changes data carries a CSRF token.
 
-## Motion (redesign branch)
+## Motion ("Night Shift" redesign, branch `redesign-motion`)
 
-All of it is plain CSS and vanilla JS in `assets/app.css` and `assets/app.js` (Part 2), no animation library.
+All plain CSS and vanilla JS in `assets/app.css` and `assets/app.js` (Part 2), no animation library. With "reduce motion" switched on in the OS, none of it runs and every section shows in its final state.
 
-| Effect | Trigger | How it works |
-|---|---|---|
-| Headline words slide up, panels and rows fade in | Scroll | Elements start hidden in CSS; an `IntersectionObserver` adds `.is-in` when they enter the viewport and a CSS transition plays. `--i` staggers them. |
-| Numbers count up | Scroll | Same observer starts a `requestAnimationFrame` counter with an ease-out curve. |
-| Top progress line, hero parallax, footer wordmark rising | Scroll | One `requestAnimationFrame` loop turns `scrollY` into CSS variables and transforms. |
-| Marquee speeds up and reverses | Scroll | The loop measures scroll velocity and adds it to the marquee's base speed. |
-| Page wipe, sliding nav underline, avatar growing into the profile | Click on a link | Cross-document View Transitions (`@view-transition`). The browser snapshots the old and new page and animates between them. Chrome and Edge only; other browsers just navigate. |
-| Rows glide when filtering | Typing / select | `document.startViewTransition()` around the filter update. |
-| Ripple, magnetic CTA, 3D tilt card, cursor ring | Click / pointer | Pointer events set transforms; the ring eases toward the pointer each frame. |
+**Scroll**
 
-With "reduce motion" switched on in the OS, all of it is turned off.
+| Effect | How it works |
+|---|---|
+| Hero pins, shrinks and rounds off; title lifts; avatars drift upward | The hero sits in a tall `.stage` with a sticky inner box. One `requestAnimationFrame` loop turns how far you are through the stage into `scale`, `border-radius` and `translate`. |
+| Page colour changes per section (ink, plum, sun yellow) | An `IntersectionObserver` watching the middle line of the screen swaps `--bg`/`--fg` on `<html>`; `body` transitions its colours. |
+| Statement words light up in reading order | Each word is a `<span>`; the loop lights the first *n* words, where *n* follows the paragraph's position on screen. |
+| "Meet the crew" cards slide sideways while you scroll down | The section is made as tall as the card row is wide; the sticky row is translated left by the scroll progress. Counter and bar follow it. On phones it is a normal swipe strip. |
+| Headings rise letter by letter, rows and panels fade up, numbers count up, bars fill | `IntersectionObserver` adds `.is-in` once; CSS transitions do the rest, staggered with `--i`. |
+| Marquee tapes speed up and reverse with scroll direction; tapes and card row lean with speed | The loop measures scroll velocity and adds it to marquee speed and a `skewX`/`skewY`. |
+| Spinning "Adopt · Don't shop" badge speeds up with scroll | Same velocity value drives its rotation. |
+| Nav hides when scrolling down, returns when scrolling up | The loop compares this frame's scroll position with the last one. |
+| Footer "AdopIT!" letters rise one after another | The loop maps footer progress to a per-letter `translateY`. |
+| Progress line and back-to-top ring | Scroll position written to `--prog`; the ring is an SVG `stroke-dashoffset`. |
+
+**Hover**: rolling nav letters, button fill growing from the point the pointer entered, magnetic buttons, 3D tilt and a spotlight glow on cards, avatar bounces, a floating preview card that trails the pointer over table rows, codes and numbers that scramble, icon-specific gestures (eye blinks, pencil scribbles, bin shakes), a cursor ring that grows and shows labels ("View", "Add", "Scroll").
+
+**Click**: paw-print burst on the main buttons, ripples on the others, whole table rows open the pet, the delete dialog springs in and its icon shakes, success toasts slide in and dismiss themselves (hover pauses the timer).
+
+**Page changes** (Chrome and Edge): the next page opens as a circle growing from where you clicked, the nav dot slides to the new tab, and a pet's avatar morphs into the big avatar on its profile. Filtering the tables makes the remaining rows glide into place. Other browsers just navigate normally.
+
+**First visit**: a yellow loading screen counts to 100% and wipes away (once per browser tab).

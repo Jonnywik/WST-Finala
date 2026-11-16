@@ -1,12 +1,26 @@
 </main>
 
-<footer class="container-xl site-footer">
-  <div class="footer-meta">
-    <span>Pet Adoption &amp; Vet Care Registry</span>
-    <span>PHP + MySQL on localhost</span>
+<footer class="site-footer">
+  <div class="container-xl">
+    <div class="footer-cta">
+      <span class="eyebrow" data-scramble>Someone new arrived?</span>
+      <a class="footer-big" href="create.php" data-cursor="Add"><span>Register a new arrival</span><?= icon('arrow-up-right', 48) ?></a>
+    </div>
+    <div class="footer-meta">
+      <span>Pet Adoption &amp; Vet Care Registry</span>
+      <span>PHP + MySQL on localhost</span>
+    </div>
   </div>
-  <span class="wordmark" data-scrub aria-hidden="true">AdopIT!</span>
+  <div class="wordmark" aria-hidden="true"><?php foreach (mb_str_split('AdopIT!') as $i => $ch): ?><span class="wm-c" style="--i:<?= $i ?>"><span><?= e($ch) ?></span></span><?php endforeach; ?></div>
 </footer>
+
+<button type="button" class="to-top" data-to-top aria-label="Back to top">
+  <svg class="to-top-ring" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26"/><circle class="to-top-prog" cx="30" cy="30" r="26"/></svg>
+  <?= icon('arrow-up', 20) ?>
+</button>
+
+<!-- Floating preview that follows the pointer over table rows (filled in by app.js) -->
+<div class="peek" aria-hidden="true"><div class="peek-card"><div class="peek-avatar"></div><div class="peek-name"></div><div class="peek-pills"></div></div></div>
 
 <!-- One shared delete confirmation, filled in by assets/app.js from the clicked button's data-* attributes -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">

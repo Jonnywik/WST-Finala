@@ -20,6 +20,9 @@ function icon(string $name, int $size = 20): string
         'x'           => '<path d="M18 6 6 18M6 6l12 12"/>',
         'database'    => '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
         'arrow-left'  => '<path d="m12 19-7-7 7-7M19 12H5"/>',
+        'arrow-right' => '<path d="M5 12h14M12 5l7 7-7 7"/>',
+        'arrow-up'    => '<path d="m5 12 7-7 7 7M12 19V5"/>',
+        'arrow-up-right' => '<path d="M7 17 17 7M7 7h10v10"/>',
         'clipboard'   => '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/>',
         'stethoscope' => '<path d="M11 2v2M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/>',
         'paw'         => '<circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>',
@@ -36,8 +39,8 @@ function icon(string $name, int $size = 20): string
 function brand_logo(int $size = 38): string
 {
     return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="0 0 40 40" aria-hidden="true">'
-        . '<path d="M20 35S5 26 5 15.5A8.5 8.5 0 0 1 20 10a8.5 8.5 0 0 1 15 5.5C35 26 20 35 20 35z" fill="#0D9488"/>'
-        . '<g fill="#fff"><ellipse cx="20" cy="22.5" rx="4.6" ry="3.8"/><circle cx="13.8" cy="17.6" r="2"/><circle cx="20" cy="15" r="2.1"/><circle cx="26.2" cy="17.6" r="2"/></g></svg>';
+        . '<path d="M20 35S5 26 5 15.5A8.5 8.5 0 0 1 20 10a8.5 8.5 0 0 1 15 5.5C35 26 20 35 20 35z" style="fill:var(--logo-heart,#0D9488)"/>'
+        . '<g style="fill:var(--logo-paw,#fff)"><ellipse cx="20" cy="22.5" rx="4.6" ry="3.8"/><circle cx="13.8" cy="17.6" r="2"/><circle cx="20" cy="15" r="2.1"/><circle cx="26.2" cy="17.6" r="2"/></g></svg>';
 }
 
 function species_avatar(string $species, int $size = 48): string
@@ -99,4 +102,16 @@ function status_pill(string $status): string
     ];
     [$tone, $ico] = $map[$status] ?? ['sky', 'paw'];
     return '<span class="pill pill-' . $tone . '">' . icon($ico, 14) . e($status) . '</span>';
+}
+
+// Text that rolls up letter by letter on hover. Screen readers get the plain label;
+// the two animated copies are hidden from them.
+function roll_label(string $text): string
+{
+    $chars = '';
+    foreach (mb_str_split($text) as $i => $ch) {
+        $c = $ch === ' ' ? '&nbsp;' : e($ch);
+        $chars .= '<span class="rc" style="--i:' . $i . '"><span>' . $c . '</span><span>' . $c . '</span></span>';
+    }
+    return '<span class="visually-hidden">' . e($text) . '</span><span class="roll" aria-hidden="true">' . $chars . '</span>';
 }
