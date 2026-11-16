@@ -32,9 +32,9 @@ require __DIR__ . '/includes/header.php';
 ?>
 <div class="row justify-content-center">
   <div class="col-lg-9 col-xl-8">
-    <a class="btn btn-clay btn-sm mb-3" href="view.php?id=<?= $id ?>"><?= icon('arrow-left', 16) ?>Back to profile</a>
-    <div class="clay-card pop-in">
-      <h1 class="h2">Edit <?= e($originalName) ?></h1>
+    <a class="btn btn-ghost btn-sm mb-3" href="view.php?id=<?= $id ?>"><?= icon('arrow-left', 16) ?>Back to profile</a>
+    <div class="panel pop-in">
+      <h1 data-split class="h2">Edit <?= e($originalName) ?></h1>
       <p class="text-muted-ink">Update the profile, vaccination status or adoption status.</p>
       <?php require __DIR__ . '/includes/pet_form.php'; ?>
     </div>

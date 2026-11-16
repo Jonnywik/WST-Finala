@@ -48,7 +48,7 @@ $_SESSION['setup_token'] = bin2hex(random_bytes(16));
 </head>
 <body>
 <main class="container py-5" style="max-width: 620px">
-  <div class="clay-card pop-in">
+  <div class="panel pop-in">
     <div class="brand mb-3"><?= brand_logo() ?><span>AdopIT! setup</span></div>
 
     <?php if ($error): ?>
@@ -66,8 +66,8 @@ $_SESSION['setup_token'] = bin2hex(random_bytes(16));
       <?php endif; ?>
       <form method="post" class="d-flex flex-wrap gap-2"<?= $installed ? ' onsubmit="return confirm(\'Erase all AdopIT! records and restore the sample data?\')"' : '' ?>>
         <input type="hidden" name="token" value="<?= e($_SESSION['setup_token']) ?>">
-        <button type="submit" class="btn <?= $installed ? 'btn-danger-clay' : 'btn-cta' ?>"><?= icon('database', 18) ?><?= $installed ? 'Reset to sample data' : 'Install database' ?></button>
-        <?php if ($installed): ?><a class="btn btn-clay" href="index.php">Back to AdopIT!</a><?php endif; ?>
+        <button type="submit" class="btn <?= $installed ? 'btn-danger-solid' : 'btn-cta' ?>"><?= icon('database', 18) ?><?= $installed ? 'Reset to sample data' : 'Install database' ?></button>
+        <?php if ($installed): ?><a class="btn btn-ghost" href="index.php">Back to AdopIT!</a><?php endif; ?>
       </form>
     <?php endif; ?>
   </div>

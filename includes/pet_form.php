@@ -66,6 +66,6 @@
 
   <div class="d-flex flex-wrap gap-2 mt-4">
     <button type="submit" class="btn btn-cta"><?= icon('check', 18) ?><?= e($submitLabel) ?></button>
-    <a class="btn btn-clay" href="<?= e($cancelUrl) ?>">Cancel</a>
+    <a class="btn btn-ghost" href="<?= e($cancelUrl) ?>">Cancel</a>
   </div>
 </form>

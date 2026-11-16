@@ -14,18 +14,20 @@ $flash = take_flash();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= e($pageTitle ?? 'Welcome') ?> · AdopIT!</title>
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
   <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="assets/app.css" rel="stylesheet">
 </head>
 <body>
 <a class="skip-link visually-hidden-focusable" href="#main">Skip to content</a>
+<div class="progress-line" aria-hidden="true"></div>
 
 <header class="nav-wrap container-xl">
-  <nav class="navbar navbar-expand-lg pill-nav" aria-label="Main">
-    <a class="navbar-brand brand" href="index.php"><?= brand_logo() ?><span>AdopIT!</span></a>
+  <nav class="navbar navbar-expand-lg bar" aria-label="Main" data-bs-theme="dark">
+    <a class="navbar-brand brand" href="index.php"><?= brand_logo(32) ?><span>AdopIT!</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
             aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,6 +38,7 @@ $flash = take_flash();
           <li class="nav-item">
             <a class="nav-link<?= $activeNav === $key ? ' active' : '' ?>" href="<?= $href ?>"<?= $activeNav === $key ? ' aria-current="page"' : '' ?>>
               <?= icon($ico, 18) ?><?= e($label) ?>
+              <?php if ($activeNav === $key): ?><span class="nav-ind"></span><?php endif; ?>
             </a>
           </li>
         <?php endforeach; ?>

@@ -29,9 +29,9 @@ require __DIR__ . '/includes/header.php';
 ?>
 <div class="row justify-content-center">
   <div class="col-lg-9 col-xl-8">
-    <a class="btn btn-clay btn-sm mb-3" href="index.php"><?= icon('arrow-left', 16) ?>Back to registry</a>
-    <div class="clay-card pop-in">
-      <h1 class="h2">Register a new pet</h1>
+    <a class="btn btn-ghost btn-sm mb-3" href="index.php"><?= icon('arrow-left', 16) ?>Back to registry</a>
+    <div class="panel pop-in">
+      <h1 data-split class="h2">Register a new pet</h1>
       <p class="text-muted-ink">The next free pet code is suggested for you. Fields marked <span class="req">*</span> are required.</p>
       <?php require __DIR__ . '/includes/pet_form.php'; ?>
     </div>

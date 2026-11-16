@@ -50,3 +50,19 @@ design-system/adopit/    the design rules the styles follow
 ```
 
 Every query uses prepared statements, all output is HTML-escaped, and every form that changes data carries a CSRF token.
+
+## Motion (redesign branch)
+
+All of it is plain CSS and vanilla JS in `assets/app.css` and `assets/app.js` (Part 2), no animation library.
+
+| Effect | Trigger | How it works |
+|---|---|---|
+| Headline words slide up, panels and rows fade in | Scroll | Elements start hidden in CSS; an `IntersectionObserver` adds `.is-in` when they enter the viewport and a CSS transition plays. `--i` staggers them. |
+| Numbers count up | Scroll | Same observer starts a `requestAnimationFrame` counter with an ease-out curve. |
+| Top progress line, hero parallax, footer wordmark rising | Scroll | One `requestAnimationFrame` loop turns `scrollY` into CSS variables and transforms. |
+| Marquee speeds up and reverses | Scroll | The loop measures scroll velocity and adds it to the marquee's base speed. |
+| Page wipe, sliding nav underline, avatar growing into the profile | Click on a link | Cross-document View Transitions (`@view-transition`). The browser snapshots the old and new page and animates between them. Chrome and Edge only; other browsers just navigate. |
+| Rows glide when filtering | Typing / select | `document.startViewTransition()` around the filter update. |
+| Ripple, magnetic CTA, 3D tilt card, cursor ring | Click / pointer | Pointer events set transforms; the ring eases toward the pointer each frame. |
+
+With "reduce motion" switched on in the OS, all of it is turned off.

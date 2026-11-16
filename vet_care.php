@@ -100,14 +100,14 @@ require __DIR__ . '/includes/header.php';
 ?>
 <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-3">
   <div>
-    <h1 class="h2 mb-0">Vet Care Logs</h1>
+    <h1 data-split class="h2 mb-0">Vet Care Logs</h1>
     <span class="text-muted-ink">Vaccinations, checkups, deworming, medication and grooming for every pet.</span>
   </div>
 </div>
 
 <div class="row g-4">
   <div class="col-lg-4">
-    <div class="clay-card clay-lav pop-in" id="form">
+    <div class="panel tone-lav pop-in" id="form">
       <h2 class="h4"><?= $editing ? 'Edit vet visit' : 'Log a vet visit' ?></h2>
       <?php if (!$pets): ?>
         <p class="mb-0">Register a pet first, then you can log its vet care. <a href="create.php">Register Pet</a></p>
@@ -167,7 +167,7 @@ require __DIR__ . '/includes/header.php';
         <div class="d-flex flex-wrap gap-2">
           <button type="submit" class="btn btn-cta"><?= icon('check', 18) ?><?= $editing ? 'Save Changes' : 'Log Visit' ?></button>
           <?php if ($editing || $backPet): ?>
-            <a class="btn btn-clay" href="<?= $backPet ? 'view.php?id=' . $backPet : 'vet_care.php' ?>">Cancel</a>
+            <a class="btn btn-ghost" href="<?= $backPet ? 'view.php?id=' . $backPet : 'vet_care.php' ?>">Cancel</a>
           <?php endif; ?>
         </div>
       </form>
@@ -176,7 +176,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 
   <div class="col-lg-8" data-filter-scope>
-    <div class="clay-card filter-bar mb-3">
+    <div class="panel filter-bar mb-3">
       <div class="row g-2 align-items-center">
         <div class="col-md">
           <div class="search-box">
@@ -193,9 +193,9 @@ require __DIR__ . '/includes/header.php';
       </div>
     </div>
 
-    <div class="clay-card table-card">
+    <div class="panel table-card">
       <div class="table-responsive">
-        <table class="table clay-table">
+        <table class="table data-table">
           <thead>
             <tr>
               <th scope="col">Pet</th>

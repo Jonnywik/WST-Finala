@@ -21,16 +21,16 @@ $pageTitle = $pet['name'];
 $activeNav = 'pets';
 require __DIR__ . '/includes/header.php';
 ?>
-<a class="btn btn-clay btn-sm mb-3" href="index.php"><?= icon('arrow-left', 16) ?>Back to registry</a>
+<a class="btn btn-ghost btn-sm mb-3" href="index.php"><?= icon('arrow-left', 16) ?>Back to registry</a>
 
 <div class="row g-4">
   <div class="col-lg-5">
-    <div class="clay-card pop-in" style="--i:0">
+    <div class="panel pop-in" style="--i:0">
       <div class="d-flex align-items-center gap-3">
-        <?= species_avatar($pet['species'], 84) ?>
+        <span class="vt-avatar"><?= species_avatar($pet['species'], 84) ?></span>
         <div>
           <span class="code-pill"><?= e($pet['pet_code']) ?></span>
-          <h1 class="h2 mt-1 mb-0"><?= e($pet['name']) ?></h1>
+          <h1 data-split class="h2 mt-1 mb-0"><?= e($pet['name']) ?></h1>
         </div>
       </div>
       <div class="d-flex flex-wrap gap-2 my-3">
@@ -51,7 +51,7 @@ require __DIR__ . '/includes/header.php';
       <?php endif; ?>
       <div class="d-flex flex-wrap gap-2 mt-4">
         <a class="btn btn-cta" href="edit.php?id=<?= $id ?>"><?= icon('pencil', 18) ?>Edit</a>
-        <button type="button" class="btn btn-clay" data-bs-toggle="modal" data-bs-target="#deleteModal"
+        <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#deleteModal"
                 data-delete-action="delete.php" data-delete-id="<?= $id ?>"
                 data-delete-label="<?= e($pet['name'] . ' (' . $pet['pet_code'] . ')') ?>"
                 data-delete-note="Their vet logs and adoption inquiries will be deleted too. This cannot be undone."><?= icon('trash', 18) ?>Delete</button>
@@ -60,10 +60,10 @@ require __DIR__ . '/includes/header.php';
   </div>
 
   <div class="col-lg-7">
-    <div class="clay-card clay-lav pop-in mb-4" style="--i:1">
+    <div class="panel tone-lav pop-in mb-4" style="--i:1">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
         <h2 class="h4 mb-0"><?= icon('stethoscope', 22) ?> Vet care timeline</h2>
-        <a class="btn btn-clay btn-sm" href="vet_care.php?pet_id=<?= $id ?>#form"><?= icon('plus', 16) ?>Log visit</a>
+        <a class="btn btn-ghost btn-sm" href="vet_care.php?pet_id=<?= $id ?>#form"><?= icon('plus', 16) ?>Log visit</a>
       </div>
       <?php if ($logs): ?>
         <ol class="timeline">
@@ -83,10 +83,10 @@ require __DIR__ . '/includes/header.php';
       <?php endif; ?>
     </div>
 
-    <div class="clay-card clay-pink pop-in" style="--i:2">
+    <div class="panel tone-pink pop-in" style="--i:2">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
         <h2 class="h4 mb-0"><?= icon('heart', 22) ?> Adoption inquiries</h2>
-        <a class="btn btn-clay btn-sm" href="adoptions.php?pet_id=<?= $id ?>#form"><?= icon('plus', 16) ?>New inquiry</a>
+        <a class="btn btn-ghost btn-sm" href="adoptions.php?pet_id=<?= $id ?>#form"><?= icon('plus', 16) ?>New inquiry</a>
       </div>
       <?php if ($inquiries): ?>
         <ul class="list-unstyled mb-0 d-grid gap-3">

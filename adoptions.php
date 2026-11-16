@@ -100,13 +100,13 @@ $activeNav = 'adoptions';
 require __DIR__ . '/includes/header.php';
 ?>
 <div class="mb-3">
-  <h1 class="h2 mb-0">Adoption Inquiries</h1>
+  <h1 data-split class="h2 mb-0">Adoption Inquiries</h1>
   <span class="text-muted-ink">Applications from people who want to give a pet a home.</span>
 </div>
 
 <div class="row g-4">
   <div class="col-lg-4">
-    <div class="clay-card clay-pink pop-in" id="form">
+    <div class="panel tone-pink pop-in" id="form">
       <h2 class="h4"><?= $editing ? 'Edit inquiry' : 'New inquiry' ?></h2>
       <?php if (!$pets): ?>
         <p class="mb-0">Register a pet first, then you can record inquiries for it. <a href="create.php">Register Pet</a></p>
@@ -167,7 +167,7 @@ require __DIR__ . '/includes/header.php';
         <div class="d-flex flex-wrap gap-2">
           <button type="submit" class="btn btn-cta"><?= icon('check', 18) ?><?= $editing ? 'Save Changes' : 'Save Inquiry' ?></button>
           <?php if ($editing || $backPet): ?>
-            <a class="btn btn-clay" href="<?= $backPet ? 'view.php?id=' . $backPet : 'adoptions.php' ?>">Cancel</a>
+            <a class="btn btn-ghost" href="<?= $backPet ? 'view.php?id=' . $backPet : 'adoptions.php' ?>">Cancel</a>
           <?php endif; ?>
         </div>
       </form>
@@ -176,7 +176,7 @@ require __DIR__ . '/includes/header.php';
   </div>
 
   <div class="col-lg-8" data-filter-scope>
-    <div class="clay-card filter-bar mb-3">
+    <div class="panel filter-bar mb-3">
       <div class="row g-2 align-items-center">
         <div class="col-md">
           <div class="search-box">
@@ -193,9 +193,9 @@ require __DIR__ . '/includes/header.php';
       </div>
     </div>
 
-    <div class="clay-card table-card">
+    <div class="panel table-card">
       <div class="table-responsive">
-        <table class="table clay-table">
+        <table class="table data-table">
           <thead>
             <tr>
               <th scope="col">Applicant</th>
