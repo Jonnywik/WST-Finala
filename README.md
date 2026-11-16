@@ -2,6 +2,8 @@
 
 A small shelter system built with **PHP, HTML and vanilla JS** (Bootstrap 5 bundled locally), running on **XAMPP / localhost** with MySQL.
 
+The final design is **Night Shift**, the version selected from <http://localhost:8003/>. It is the active application at the repository root on `master`. Previous designs are stored as source snapshots in [`archive/`](archive/README.md).
+
 ## Run it
 
 1. Copy this folder to `C:\xampp\htdocs\adopit`.
